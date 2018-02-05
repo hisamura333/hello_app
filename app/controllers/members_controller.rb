@@ -10,7 +10,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
-      # 保存の成功をここで扱う。
+      redirect_to @member
     else
       render 'new'
     end
