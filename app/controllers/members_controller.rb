@@ -10,6 +10,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
+      flash[:success] = "Welcome to the Sample App!"
       redirect_to @member
     else
       render 'new'
