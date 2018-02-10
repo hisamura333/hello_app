@@ -11,4 +11,16 @@ class MembersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'members/new'
   end
+
+  test "valid signup information" do
+    get signup_path
+    assert_difference 'Member.count', 1 do
+      post members_path, params: { member: { name:  "Example User",
+                                         email: "user@example.com",
+                                         password:              "password",
+                                         password_confirmation: "password" } }
+    end
+    follow_redirect!
+    assert_template 'members/show'
+  end
 end
